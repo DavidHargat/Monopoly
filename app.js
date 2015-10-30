@@ -7,6 +7,8 @@ var GameServer = require("./server/GameServer.js");
 
 var server = new GameServer();
 
+var PORT = 80;
+
 /* 
 * Make our /client folder public (files placed in there get served)
 */
@@ -33,6 +35,6 @@ io.on('connection', function(socket){
 /*
 * Start the web server.
 */
-http.listen(3000, function(){
-	console.log('listening on *:3000');
+http.listen(PORT, function(){
+	console.log('listening on *:'+PORT);
 });
