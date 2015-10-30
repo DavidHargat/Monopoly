@@ -1,11 +1,27 @@
 
 /**
-* Manages socket connections.
+* Manages socket connections to a game instance.
 * Contains game/lobby objects.
 */
 var GameServer = function(){
 	
 	this.socketTable = {};
+	this.numberOfSockets = 0;
+	
+	/**
+	* State is either 
+	* 'game' or 'lobby'.
+	* Will determine how incoming connections are sorted.
+	*/
+	this.state = "lobby"; 
+	
+	/**
+	* sets the new GameServer state and broadcasts to each client.
+	*/
+	this.setState = function( newState ){
+		this.state = newState;
+		this.broadcast("state", this.state);
+	};
 	
 	/**
 	* Sends a message to each socket.
@@ -33,8 +49,9 @@ var GameServer = function(){
 	* @param {Socket} socket - the socket to remove.
 	*/
 	this.removeSocket = function( socket ){
-		if( socketTable[socket.id] ){
-			delete socketTable[socket.id];
+		if( this.socketTable[socket.id] ){
+			delete this.socketTable[socket.id];
+			this.numberOfSockets -= 1;
 		}else{
 			console.log("ERROR (GameServer::removeSocket) Could not remove socket ", socket);
 		}
@@ -46,6 +63,7 @@ var GameServer = function(){
 	*/
 	this.addSocket = function( socket ){
 		this.socketTable[socket.id] = socket;
+		this.numberOfSockets += 1;
 	};
 	
 	/**
@@ -54,6 +72,8 @@ var GameServer = function(){
 	*/
 	this.onConnect = function( socket ){
 		this.addSocket(socket);
+		// Send the server state to the client
+		socket.emit("state", this.state);
 	};
 	
 	/**
