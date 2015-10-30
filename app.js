@@ -19,14 +19,14 @@ app.use("/", express.static(__dirname + '/client'));
 io.on('connection', function(socket){
 	var id = socket.id;
 	
-	console.log('(app::io.on:connection) ' + socket.id);
+	console.log('(app::connection) ' + socket.id);
 	
 	server.onConnect( socket );
 	
 	socket.on("disconnect", function(){
+		console.log('(app::disconnect) ' + socket.id);
 		server.onDisconnect( socket );
 	});
-
 	
 });
 
