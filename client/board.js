@@ -37,8 +37,7 @@ function Gameboard(){
 	this.view = new GameboardView();
 	this.view.setup();
 	
-	this.controller = new GameboardController( this.view );
-	this.controller.addClickEvents();
+	this.controller = new GameboardController( this );
 	
 	this.boxList;
 	
@@ -87,6 +86,7 @@ function Gameboard(){
 	
 	this.setup = function(){
 		this.boxList = this.setupBoxList();
+		this.controller.addClickEvents();	
 		
 		this.view.setBoxImage(0,0,"./square1.jpg");
 	
@@ -107,7 +107,7 @@ function Gameboard(){
 /**
 * Handles input from the GameboardView elements.
 */
-function GameboardController( view ){
+function GameboardController( board ){
 	
 	this.data = [];
 	
@@ -119,7 +119,7 @@ function GameboardController( view ){
 	*/
 	this.addClickEvent = function( box, x, y ){
 		box.addEventListener("click", function(){
-			view.setBox(x, y, "red");
+			board.view.setBox(x, y, "red");
 		});
 	};
 	
@@ -128,15 +128,10 @@ function GameboardController( view ){
 	* (Listen for mouse clicks)
 	*/
 	this.addClickEvents = function(){
-		// Grab each box element and add a click event to it.
-		for(var x=0; x<10; x++){
-			for(var y=0; y<10; y++){
-				var box = view.getBox(x, y);
-				box.x = x;
-				box.y = y;
-				this.addClickEvent(box, x, y);
-			}	
-		}		
+		var this_ = this;
+		board.boxList.forEach(function(box){
+			this_.addClickEvent(box, box.x, box.y);
+		});	
 	};
 	
 }
@@ -192,6 +187,8 @@ function GameboardView(){
 			// Within each row create 10 boxes
 			for(var j=0; j<10; j++){
 				var box = this.createBox();
+				box.x = j;
+				box.y = i;
 				row.appendChild(box);
 			}
 
