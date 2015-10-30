@@ -1,0 +1,23 @@
+{
+  "name": "monopoly",
+  "version": "0.0.1",
+  "description": "Browser Monopoly Front and Back end",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidHargat/Monopoly.git"
+  },
+  "author": "David Hargat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidHargat/Monopoly/issues"
+  },
+  "homepage": "https://github.com/DavidHargat/Monopoly#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.7"
+  }
+}
