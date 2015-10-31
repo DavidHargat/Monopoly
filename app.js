@@ -4,11 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var GameServer = require("./server/GameServer.js");
-var ChatServer = require("./server/ChatServer.js");
-
-var server = new GameServer();
-var chat = new ChatServer( io );
-
+var server = new GameServer( io );
 
 var PORT = 80;
 
@@ -34,7 +30,7 @@ io.on('connection', function(socket){
 	});
 	
 	socket.on("chat-message", function( data ){
-		chat.onMessage( data );
+		server.chat.onMessage( socket, data );
 	});
 	
 });

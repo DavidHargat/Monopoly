@@ -1,14 +1,37 @@
 
-var MonopolyServer = function( io ){
+var MonopolyServer = function( gameServer ){
 	
 	var self = this;
 	
-	this.io = io;
+	this.gameServer = gameServer;
+	
+	this.addRoll = function( socket, roll ){
+				
+		var newPosition = socket.position + roll;
+		
+		var max = 36-1;
+		if( newPosition > max ){
+			newPosition = ( newPosition-max );
+		}
+		
+		socket.position = newPosition;
+		
+		self.gameServer.io.emit("player-set", {
+			color: socket.color,
+			position: newPosition
+		});
+		
+	};
 	
 	this.roll = function( socket ){
 		
-		var dice = Math.round(Math.random()*6)+1;
-		self.io.emit("chat-message", "Rolled: " + dice);
+		var color = socket.color;
+		
+		var dice = Math.round(Math.random()*5)+1;
+		
+		self.addRoll( socket, dice );
+		
+		gameServer.io.emit("chat-message", color + " Rolled: " + dice);
 		
 	};
 	

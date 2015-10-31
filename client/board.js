@@ -37,6 +37,7 @@ function createPlayer(gameboard, color ){
 	element.className = "player";
 	element.setPosition = function(i){
 		if( i>0 && i < gameboard.boxList.length){
+			element.position = i;
 			if( element.parent ){
 				element.parent.removeChild(element);
 			}
@@ -112,8 +113,8 @@ function Gameboard(){
 			box.className += " inner-shadow";
 		});
 
-		this.boxList[1].appendChild(this.player1);
-		this.boxList[2].appendChild(this.player2);	
+		this.player1.setPosition(1);
+		this.player2.setPosition(1);
 		
 		/*
 		var left  = this.view.getBox(0,1);

@@ -1,31 +1,29 @@
-var ChatServer = function( io ){
+var ChatServer = function( gameServer ){
 	var self = this;
 	
-	this.io = io;
+	this.gameServer = gameServer;
 	
-	this.onMessage = function( data ){
-		
-		if( this.isCommand(data) ){
+	this.onMessage = function( socket, data ){
+		if( self.isCommand(data) ){
 			// Its a command
-			this.onCommand(data);
+			self.onCommand(socket, data);
 		}else{
-			this.io.emit("chat-message", data);
+			self.gameServer.io.emit("chat-message", data);
 		}
-		
 	};
 	
-	this.onRoll = function(){
-		
+	this.onRoll = function( socket ){
+		self.gameServer.monopoly.roll( socket );
 	};
 	
-	this.onCommand = function( data ){
+	this.onCommand = function( socket,  data ){
 		var commands = {
 			"/roll": self.onRoll
 		};
 		
 		var cmd = commands[data];
 		if( cmd ){
-			cmd();
+			cmd( socket );
 		}
 	};
 	

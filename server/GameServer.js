@@ -1,9 +1,16 @@
+var ChatServer = require("./ChatServer.js");
+var MonopolyServer = require("./MonopolyServer.js");
 
 /**
 * Manages socket connections to a game instance.
 * Contains game/lobby objects.
 */
-var GameServer = function(){
+var GameServer = function( io ){
+	
+	this.io = io;
+	
+	this.chat = new ChatServer( this );
+	this.monopoly = new MonopolyServer( this );
 	
 	this.socketTable = {};
 	this.numberOfSockets = 0;
@@ -77,6 +84,7 @@ var GameServer = function(){
 		if(socket.index > 1){
 			socket.color = "grey";
 		}
+		socket.position = 1;
 		socket.emit("chat-message","You Are "+socket.color);			
 	};
 	

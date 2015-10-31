@@ -33,10 +33,10 @@ GameServer
 			* jail logic
 			
 * Core Mechanics
-	* Dice Roll
 	* Property
 	* Money
-	* Players (their actual pieces)
 	* Player Inventory
+	* Dice Roll
+	* Players (their actual pieces)
 	
 	
