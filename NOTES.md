@@ -1,4 +1,18 @@
  
+## Architecture
+ 
+
+GameServer
+
+
+* ChatServer
+
+
+* MonopolyServer
+
+---
+
+ 
 * There are 35 tiles
 
 * State

@@ -13,7 +13,7 @@ var GameServer = function(){
 	* 'game' or 'lobby'.
 	* Will determine how incoming connections are sorted.
 	*/
-	this.state = "lobby"; 
+	this.state = "lobby";
 	
 	/**
 	* sets the new GameServer state and broadcasts to each client.
@@ -63,7 +63,21 @@ var GameServer = function(){
 	*/
 	this.addSocket = function( socket ){
 		this.socketTable[socket.id] = socket;
+		socket.index = this.numberOfSockets;
 		this.numberOfSockets += 1;
+	};
+	
+	this.assignSocket = function( socket ){
+		if( socket.index === 0){
+			socket.color = "red";
+		}
+		if( socket.index === 1){
+			socket.color = "blue";
+		}
+		if(socket.index > 1){
+			socket.color = "grey";
+		}
+		socket.emit("chat-message","You Are "+socket.color);			
 	};
 	
 	/**
@@ -72,6 +86,7 @@ var GameServer = function(){
 	*/
 	this.onConnect = function( socket ){
 		this.addSocket(socket);
+		this.assignSocket(socket);
 		// Send the server state to the client
 		socket.emit("state", this.state);
 	};
