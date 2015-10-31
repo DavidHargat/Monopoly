@@ -7,21 +7,22 @@
 	<body>
 	
 		<div class = "main-left">
+		
+			<!-- CHAT -->
 			<div class = "chat-container">
 				<ul id = "chat">
-					<li> test </li>
-					<li> test </li>
-					<li> test </li>
-					<li> test </li>
 				</ul>
 				<form action="">
 				  <input id="m" autocomplete="off" />
 				  <button type="button"  id = "chat-button">Send</button>
 				</form>
 			</div>
+			
 		</div>
+		
 		<div class = "main-middle">
 		
+			<!-- GAME -->
 			<div class="board" > 
 				
 				<div class = "deck-left"> </div>
@@ -42,6 +43,7 @@
 	</body>
 	
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="./chat.js"> </script>
 	<script src="./board.js"> </script>
 	<script src="./client.js"> </script>
 	

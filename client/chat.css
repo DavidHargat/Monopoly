@@ -9,11 +9,13 @@
 	margin: 0; 
 	padding: 0; 
 	height: 80%;
+	overflow-y: scroll;
 }
 
 #chat li { 
 
 	padding: 10px;
+	display: block;
 	
 	width: 90%;
 	
@@ -46,7 +48,7 @@
 	height: 8%;
 	
 	margin: auto;
-	padding: 12px;
+	padding: 10px;
 	margin-top: 4px;
 	margin-bottom: 4px;
 	
