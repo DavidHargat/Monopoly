@@ -17,11 +17,16 @@ html,body{
 
 .main-middle{
 	width: 40%; 
-	background-color:#eee;
 }
 
 .main-right{
 	width: 30%;
+}
+
+.inner-shadow{
+	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,1);
+	-moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,1);
+	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,1);
 }
 
 .board{
@@ -33,6 +38,7 @@ html,body{
 	
 	margin: auto;
 	display: block;
+	border: solid 1px black;
 	
 	position: relative;
 }
@@ -76,12 +82,23 @@ html,body{
 	width: 10%;
 	height: 100%;
 	float: left;
+	/*
 	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.2);
 	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.2);
+	*/
+	
 	background-size: cover;
 	z-index: 1;
-	
+}
+
+.player{
+	width: 16px;
+	height: 16px;
+	border: solid 2px black;
+	background-color: red;
+	border-radius: 8px;
+	margin: 8px;
 }
 
 @keyframes fadein {

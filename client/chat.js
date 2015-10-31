@@ -9,6 +9,7 @@ function ChatView(){
 		var el = document.createElement("li");
 		el.textContent = msg;
 		this.element.appendChild(el);
+		this.element.scrollTop = this.element.scrollHeight;
 	};
 	
 }

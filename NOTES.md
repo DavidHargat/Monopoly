@@ -1,6 +1,7 @@
  
+* There are 35 tiles
 
-* state
+* State
 	* random deck
 		* chance
 		* community chest
@@ -16,3 +17,12 @@
 		* money
 		* is in jail or not
 			* jail logic
+			
+* Core Mechanics
+	* Dice Roll
+	* Property
+	* Money
+	* Players (their actual pieces)
+	* Player Inventory
+	
+	

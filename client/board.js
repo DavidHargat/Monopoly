@@ -31,6 +31,21 @@ var loop = function(){
 };
 loop();
 
+function createPlayer(gameboard, color ){
+	var element = document.createElement("div");
+	element.style.backgroundColor = color;
+	element.className = "player";
+	element.setPosition = function(i){
+		if( i>0 && i < gameboard.boxList.length){
+			if( element.parent ){
+				element.parent.removeChild(element);
+			}
+			gameboard.boxList[i].appendChild(element);
+		}
+	};
+	return element;
+}
+
 function Gameboard(){
 	this.data = [];
 	
@@ -40,6 +55,9 @@ function Gameboard(){
 	this.controller = new GameboardController( this );
 	
 	this.boxList;
+	
+	this.player1 = createPlayer(this,"red");
+	this.player2 = createPlayer(this,"blue");
 	
 	/**
 	* Find an array of the 'important' tiles.
@@ -90,6 +108,13 @@ function Gameboard(){
 		
 		this.view.setBoxImage(0,0,"./square1.jpg");
 	
+		this.boxList.forEach(function( box ){
+			box.className += " inner-shadow";
+		});
+
+		this.boxList[1].appendChild(this.player1);
+		this.boxList[2].appendChild(this.player2);	
+		
 		/*
 		var left  = this.view.getBox(0,1);
 		var right = this.view.getBox(9,1);
