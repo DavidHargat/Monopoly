@@ -7,6 +7,9 @@ var MonopolyServer = require("./MonopolyServer.js");
 */
 var GameServer = function( io ){
 	
+	
+	var self = this;
+	
 	this.io = io;
 	
 	this.chat = new ChatServer( this );
@@ -84,7 +87,16 @@ var GameServer = function( io ){
 		if(socket.index > 1){
 			socket.color = "grey";
 		}
-		socket.position = 1;
+		
+		socket.position = 18;
+		
+		this.forEachSocket(function( s ){
+			self.io.emit("player-set",{
+				color: s.color,
+				position: s.position
+			});
+		});
+		
 		socket.emit("chat-message","You Are "+socket.color);			
 	};
 	
