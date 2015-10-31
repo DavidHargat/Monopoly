@@ -5,11 +5,19 @@
 GameServer
 
 
-* ChatServer
+	* ChatServer
 
 
-* MonopolyServer
+	* MonopolyServer
+		* Player
+			* socket
+			* game logic stuff
+			* money
+			* color
 
+
+	
+	
 ---
 
  

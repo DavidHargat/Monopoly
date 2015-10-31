@@ -107,6 +107,7 @@ var GameServer = function( io ){
 	this.onConnect = function( socket ){
 		this.addSocket(socket);
 		this.assignSocket(socket);
+		console.log(socket);
 		// Send the server state to the client
 		socket.emit("state", this.state);
 	};
