@@ -3,7 +3,28 @@ var chat;
 
 function ChatView(){
 	
-	this.element = document.getElementById("chat");
+	var self = this;
+	
+	var f = function(id){return document.getElementById(id);};
+	
+	this.element = f("chat");
+	this.button  = f("chat-button");
+	this.input   = f("chat-input");
+	
+	this.sendMessage = function(){
+		var msg = self.consumeInput();
+		socket.emit("chat-message",msg);
+	};
+	
+	this.button.addEventListener("click",function(){
+		self.sendMessage();
+	});
+	
+	this.consumeInput = function(){
+		var value = this.input.value+"";
+		this.input.value = "";
+		return value;
+	};
 	
 	this.append = function(msg){
 		var el = document.createElement("li");
