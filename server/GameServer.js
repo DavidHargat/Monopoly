@@ -77,28 +77,7 @@ var GameServer = function( io ){
 		this.numberOfSockets += 1;
 	};
 	
-	this.assignSocket = function( socket ){
-		if( socket.index === 0){
-			socket.color = "red";
-		}
-		if( socket.index === 1){
-			socket.color = "blue";
-		}
-		if(socket.index > 1){
-			socket.color = "grey";
-		}
-		
-		socket.position = 18;
-		
-		this.forEachSocket(function( s ){
-			self.io.emit("player-set",{
-				color: s.color,
-				position: s.position
-			});
-		});
-		
-		socket.emit("chat-message","You Are "+socket.color);			
-	};
+
 	
 	/**
 	* Handle new socket connections.
@@ -106,9 +85,12 @@ var GameServer = function( io ){
 	*/
 	this.onConnect = function( socket ){
 		this.addSocket(socket);
-		this.assignSocket(socket);
-		console.log(socket);
+
 		// Send the server state to the client
+		var player = this.monopoly.createPlayer(socket);
+		this.monopoly.addPlayer(player);
+		this.monopoly.assignPlayer(player);
+		
 		socket.emit("state", this.state);
 	};
 	

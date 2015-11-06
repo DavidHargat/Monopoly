@@ -29,6 +29,20 @@ html,body{
 	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,1);
 }
 
+#money{
+	width: 90%;
+	height: 20%;
+	
+	margin: auto;
+	display: block;
+	
+	color: green;
+	text-align: center;
+	font-size: 64px;
+	border-radius: 8px;
+	border: solid 1px black;
+}
+
 .board{
 	margin: 0;
 	padding: 0;

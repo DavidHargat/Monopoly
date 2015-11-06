@@ -13,7 +13,12 @@ var ChatServer = function( gameServer ){
 	};
 	
 	this.onRoll = function( socket ){
-		self.gameServer.monopoly.roll( socket );
+		var player = socket.player;
+		if( player ){
+			self.gameServer.monopoly.roll( player );
+		}else{
+			console.log("WARNING (ChatServer::onRoll) socket.player undefined.");
+		}
 	};
 	
 	this.onCommand = function( socket,  data ){
