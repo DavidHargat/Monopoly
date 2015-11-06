@@ -50,14 +50,14 @@ var MonopolyServer = function( gameServer ){
 		
 		player.setPosition(18);
 		
-		this.players.forEach(function(p){
+		this.players.forEach(function(ply){
 			self.gameServer.io.emit("player-set",{
-				color: player.color,
-				position: player.position
+				color: ply.color,
+				position: ply.position
 			});
 		});
 		
-		player.message("You Are "+player.color);			
+		player.message("You Are " + player.color);			
 	};
 	
 	this.createPlayer = function(socket){
