@@ -100,6 +100,7 @@ var GameServer = function( io ){
 	*/
 	this.onDisconnect = function( socket ){
 		this.removeSocket(socket);
+		this.monopoly.removePlayer(socket.player);
 	};
 	
 };

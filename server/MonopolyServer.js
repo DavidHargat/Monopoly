@@ -20,7 +20,7 @@ var MonopolyServer = function( gameServer ){
 	this.removePlayer = function( player ){
 		var i = this.players.indexOf(player);
 		if(i > -1){
-			player.splice(i,1);
+			this.players.splice(i,1);
 			delete this.playerMap[player.id];
 			playerIndex--;
 		}else{
